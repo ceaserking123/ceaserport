@@ -15,3 +15,10 @@ export const myInfo : LinkDto[] = [
     { value: "lover of art work", id: 3 },
     { value: "tech enthusiast", id: 4 },
 ]
+
+export const texts : string[] = [
+    "CEASER EGHWRUDJAKPOR",
+    "CEASER EGHWRUDJAKPOR",
+    "CEASER EGHWRUDJAKPOR",
+    
+  ];

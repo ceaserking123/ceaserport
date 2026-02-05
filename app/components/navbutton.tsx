@@ -33,13 +33,13 @@ export default function NavButton({ onClick, value }: NavButtonProps) {
   return (
     <button
       onClick={handleClick}
-      className={`px-4 py-2 rounded transition ${
-        active ? "bg-blue-700 text-white" : "bg-blue-500 text-white hover:bg-blue-600"
+      className={`px-4 py-2 rounded transition text-sm ${
+        active ? "text-orange-700" : "text-black hover:bg-orange-100"
       }`}
     >
       {active ? (
         <>
-          <span className="mr-2">•</span>
+          <span className="mr-2 text-orange-700">•</span>
           {value}
         </>
       ) : (

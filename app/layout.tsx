@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, } from "next/font/google";
 import "./globals.css";
-import localFont from 'next/font/local'
+import { romantic, Romancio, aroba, clairo, alrevo } from "./components/font";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-const romantic = localFont({
-  src: './romanticfont/romanticharmony.ttf',
-  weight: '200'
-})
 
 export const metadata: Metadata = {
   title: "Ceaser Portfolio",
@@ -32,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body
-        className={`${romantic.className} antialiased`}
+        className={`${romantic.variable} ${Romancio.variable} ${aroba.variable} ${clairo.variable} ${alrevo.variable} antialiased`}
       >
         {children}
       </body>

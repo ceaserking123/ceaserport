@@ -1,12 +1,17 @@
+import { DoorOpen, Ellipsis } from "lucide-react";
+import React from "react";
+
 interface LinkDto {
     value: string;
+    href: string;
     id?: number
+    icon?: React.ComponentType<any>;
 }
 export const navigation : LinkDto[] = [
-    { value: "Home", },
-    { value: "Portfolio" },
-    { value: "About" },
-    { value: "Contact" },
+    { value: "Home", href: "/"},
+    { value: "Portfolio", href: "/portfolio", icon: Ellipsis },
+    { value: "About", href: "/about", icon: DoorOpen},
+    { value: "Contact", href: "/contact" },
 ];  
 
 export const myInfo : LinkDto[] = [

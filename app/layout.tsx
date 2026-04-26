@@ -1,7 +1,10 @@
+
 import type { Metadata } from "next";
 import { Poppins, } from "next/font/google";
 import "./globals.css";
 import { romantic, Romancio, aroba, clairo, alrevo } from "./components/font";
+
+import BottomNav from "./components/bottomNav";
 
 
 
@@ -22,6 +25,7 @@ export default function RootLayout({
         className={`${romantic.variable} ${Romancio.variable} ${aroba.variable} ${clairo.variable} ${alrevo.variable} antialiased`}
       >
         {children}
+        <BottomNav />
       </body>
     </html>
   );

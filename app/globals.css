@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import 'lenis/dist/lenis.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -105,6 +106,21 @@
   --radius-4xl: calc(var(--radius) + 16px)
 }
 
+.hero1 {
+  perspective: 1000px; /* Essential for Z-axis movement */
+  color: #fff;
+}
+
+/* Layered Elements */
+.sky-container, .hero-copy, .window-container, .hero-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
@@ -195,3 +211,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+

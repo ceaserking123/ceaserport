@@ -2,6 +2,9 @@
 
 import Image from 'next/image';
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import React, {useRef} from 'react';
+import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText';
 
 export default function Introduction() {
     return (

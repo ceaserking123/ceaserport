@@ -4,6 +4,7 @@ import { Poppins, } from "next/font/google";
 import "./globals.css";
 import { romantic, Romancio, aroba, clairo, alrevo } from "./components/font";
 
+
 import BottomNav from "./components/bottomNav";
 
 

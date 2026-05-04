@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface NavButtonProps {
   onClick?: () => void;
   value: string;
+  href: string
 }
 
-export default function NavButton({ onClick, value }: NavButtonProps) {
+export default function NavButton({ onClick, value, href }: NavButtonProps) {
   const currentPath = usePathname();
   const [active, setActive] = useState(false);
 
@@ -31,8 +33,13 @@ export default function NavButton({ onClick, value }: NavButtonProps) {
   }, [currentPath, value]);
 
   return (
-    <button
-      onClick={handleClick}
+    <Link
+      onClick={(e) => {
+       console.log(href)
+       
+        handleClick();
+      }}
+      href={`/${href}`} // Ensure href is lowercase
       className={`px-4 py-2 rounded transition text-sm ${
         active ? "text-orange-700" : "text-black hover:bg-orange-100"
       }`}
@@ -45,6 +52,6 @@ export default function NavButton({ onClick, value }: NavButtonProps) {
       ) : (
         value
       )}
-    </button>
+    </Link>
   );
 }

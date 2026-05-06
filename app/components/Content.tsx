@@ -6,18 +6,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import Introduction from "./content1";
+import Casestudy from "./content2";
 
-const Introduction = () => (
-  <section className="h-screen bg-white flex items-center justify-center">
-    <h2 className="text-4xl font-bold">Introduction</h2>
-  </section>
-);
-
-const Casestudy = () => (
-  <section className="h-screen bg-gray-100 flex items-center justify-center">
-    <h2 className="text-4xl font-bold">Case Study</h2>
-  </section>
-);
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -67,7 +58,10 @@ export default function UnifiedHero() {
     const moveDistance   = skyHeight - viewportHeight;
 
     gsap.set(heroCopyRef.current, { y: "100%" });
+    
+    gsap.set(heroHeaderRef.current, { z: 0 , transformOrigin: "left center", scale: 1 });
 
+  
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: "top top",
@@ -78,7 +72,7 @@ export default function UnifiedHero() {
         const p = self.progress;
 
         // Scale window + header — zoom in first 50%
-        const scaleValue = p <= 0.5 ? 1 + p * 10 : 6;
+        const scaleValue = p <= 0.7 ? 1 + p * 9 : 9;
         gsap.set(windowContainerRef.current, { scale: scaleValue });
         gsap.set(heroHeaderRef.current,      { scale: scaleValue, z: p * 500 });
 
@@ -103,21 +97,25 @@ export default function UnifiedHero() {
       {/* ══ Hero ══════════════════════════════════════════════════════════════ */}
       <section
         ref={heroRef}
-        className="relative w-screen h-screen overflow-hidden"
+        className="relative w-screen h-screen overflow-hidden bg-white"
       >
 
         {/* Sky — tall so parallax has room to drift */}
         <div
           ref={skyContainerRef}
-          className="absolute top-0 left-0 w-full h-[350vh] will-change-transform"
+          className="absolute top-0 left-0 w-full h-[150vh] will-change-transform"
         >
           <Image
-            src="/sky.jpg"
+            src="/firstbg.png"
             alt="Sky Background"
-            fill
-            priority
-            className="object-cover object-top"
+            width={10000}
+            height={10000}
+            className="object-cover object-top "
           />
+          <div className="absolute top-[150]! right-[200] bg-white/80 px-4 py-2 rounded z-100">
+            <h1>absolution</h1>
+          </div>
+          <h1 className="w-full h-full bg-blue-600"> hello world</h1>
         </div>
 
         {/* Hero copy — revealed in final 20% of scroll */}
@@ -126,7 +124,7 @@ export default function UnifiedHero() {
           className="
             absolute inset-0 z-30
             flex items-center justify-center
-            will-change-transform overflow-hidden
+            will-change-transform overflow-hidden bg-amber-600
           "
         >
           <h1 className="
@@ -147,10 +145,14 @@ export default function UnifiedHero() {
           style={{ transformOrigin: "center center" }}
         >
           <Image
-            src="/musicimg.png"
-            alt="Window Frame"
-            fill
-            className="object-cover object-center"
+            src="/herobgimg1.webp"
+            alt="Window Frame"   
+            width={10000}
+            height={10000}
+            quality={100}
+            sizes="100vw"
+            className="object-cover object-center w-full h-full"
+            style={{transform: "translateZ(0)"}}
           />
         </div>
 
@@ -159,23 +161,23 @@ export default function UnifiedHero() {
           ref={heroHeaderRef}
           className="
             absolute inset-0 z-40
-            flex items-end justify-between
-            p-10 will-change-transform
+            flex items-center justify-center
+            p-10 will-change-transform 
           "
           style={{ transformOrigin: "center center" }}
         >
           {/* Left column */}
           <div
             ref={column1Ref}
-            className="flex flex-col gap-4 max-w-xs"
+            className="flex flex-col gap-4 max-w-xs text-black"
           >
             <h1 className="
-              text-white font-bold leading-none
+              text-black font-bold leading-none
               text-[clamp(2rem,5vw,4rem)]
             ">
               Discovery
             </h1>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-black/50 text-sm leading-relaxed">
               Exploring the horizons of digital motion and immersive design.
             </p>
           </div>
@@ -185,15 +187,10 @@ export default function UnifiedHero() {
             ref={column2Ref}
             className="flex flex-col items-end gap-4 max-w-xs text-right"
           >
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-black/80 text-sm leading-relaxed">
               Inspired by award-winning interactions.
             </p>
-            <h1 className="
-              text-white font-bold leading-none
-              text-[clamp(2rem,5vw,4rem)]
-            ">
-              2024
-            </h1>
+            
           </div>
         </div>
 
@@ -203,9 +200,9 @@ export default function UnifiedHero() {
       <section
         ref={outroRef}
         className="
-          relative w-screen h-screen
-          flex items-center justify-center
-          bg-neutral-950
+          relative 
+          flex flex-col items-center justify-center
+          
         "
       >
         <h1 className="
@@ -215,6 +212,8 @@ export default function UnifiedHero() {
         ">
           Keep Exploring
         </h1>
+        <Casestudy />
+        <Introduction />
       </section>
 
     </div>

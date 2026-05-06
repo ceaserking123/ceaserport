@@ -5,7 +5,6 @@ import "./globals.css";
 import { romantic, Romancio, aroba, clairo, alrevo } from "./components/font";
 
 
-import BottomNav from "./components/bottomNav";
 
 
 
@@ -13,6 +12,8 @@ export const metadata: Metadata = {
   title: "Ceaser Portfolio",
   description: "Ceaser's personal portfolio website.",
 };
+
+
 
 export default function RootLayout({
   children,
@@ -25,8 +26,11 @@ export default function RootLayout({
       <body
         className={`${romantic.variable} ${Romancio.variable} ${aroba.variable} ${clairo.variable} ${alrevo.variable} antialiased`}
       >
-        {children}
-        <BottomNav />
+      
+          {children}
+        
+      
+        
       </body>
     </html>
   );

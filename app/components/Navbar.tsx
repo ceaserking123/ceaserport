@@ -41,6 +41,7 @@ export default function Navbar() {
 
   const pathname = usePathname(); // ✅ declared before isActive
 
+  const firstNavRef = useRef<HTMLDivElement>(null);
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
@@ -128,7 +129,7 @@ export default function Navbar() {
   };
 
   return (
-    <main className="flex justify-between w-screen h-16 items-center">
+    <main className="flex justify-between w-screen h-16 items-center" ref={firstNavRef as React.RefObject<HTMLDivElement>}>
 
       {/* ---- Left: info ticker ---- */}
       <div className="w-1/3 visible max-sm:hidden flex items-center ml-4">

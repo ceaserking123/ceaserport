@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { Observer, SplitText, MorphSVGPlugin } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import BottomNav from "../components/bottomNav";
 gsap.registerPlugin(Observer, SplitText, useGSAP, MorphSVGPlugin);
 
 export default function About() {
@@ -160,6 +161,7 @@ export default function About() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sapien eget nunc commodo efficitur. Nulla facilisi. Sed at dui nec nisi bibendum fermentum. Curabitur ac odio a metus commodo efficitur.
         </p>
       </div>
+      <BottomNav />
     </div>
   );
 }

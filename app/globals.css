@@ -16,6 +16,7 @@
   --font-aroba: var(--font-aroba);
   --font-clairo: var(--font-clairo);
   --font-alrevo: var(--font-alrevo);
+  --font-poppins: var(--font-poppins);
 
   --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
   var(--delay, 0ms);

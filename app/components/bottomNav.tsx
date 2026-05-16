@@ -54,7 +54,7 @@ const BottomNav = forwardRef<HTMLDivElement>((props, ref) => {
     return (
         <div
             ref={ref}
-            className="fixed w-full py-4 flex justify-center items-center z-50 font-romantic"
+            className="fixed w-full py-4 flex justify-center items-center z-50 font-romantic bottom-0"
             style={{
                 bottom: 20,
                 left: '50%',

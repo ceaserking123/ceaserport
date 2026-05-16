@@ -51,13 +51,13 @@ export default function Home() {
   }, [firstNavInView]);
 
   return (
-    <div className="font-romantic w-full overflow-hidden">
+    <div className="font-romantic w-full overflow-hidden relative">
       <div ref={firstNavRef}>
         <Navbar />
       </div>
       <Hero />
       <Content />
-      <BottomNav ref={bottomRef} />  {/* ref passed directly, no wrapper div */}
+      <BottomNav ref={bottomRef}   />  {/* ref passed directly, no wrapper div */}
     </div>
   );
 }

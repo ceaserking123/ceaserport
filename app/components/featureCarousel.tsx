@@ -7,22 +7,22 @@ const features = [
   {
     id: "deals",
     description: "Process of brand setup",
-    panel: "/firstbg.png",
+    panel: "/art1.png",
   },
   {
     id: "companies",
     description: "Character design my fav.",
-    panel: "/herobgimg2.png",
+    panel: "/art2.png",
   },
   {
     id: "contacts",
     description: "Grow your business with the right key.",
-    panel: "/destoptoplayer.png",
+    panel: "/art3.png",
   },
   {
     id: "custom",
     description: "Build from ground up.",
-    panel: "/musicimg.png",
+    panel: "/artwork4.png",
   },
 ];
 
@@ -129,7 +129,7 @@ export default function FeaturesCarousel() {
   }, [active]);
 
   return (
-    <section className="flex flex-col mx-auto w-screen h-screen justify-center items-center relative bg-[#090909] font-mono antialiased overflow-hidden p-6 gap-16">
+    <section className="flex flex-col mx-auto w-screen h-screen justify-center items-center relative bg-blue-900 font-mono antialiased overflow-hidden p-6 gap-16">
       
       {/* 3D Viewport Box — Permanently Scaled Up 20% (scale-120 / 1.2) */}
       <div 

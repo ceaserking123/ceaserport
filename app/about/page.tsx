@@ -8,6 +8,8 @@ import { Observer, SplitText, MorphSVGPlugin } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import BottomNav from "../components/bottomNav";
+import AboutPage from "../components/AboutPage";
+import GrainOverlay from "../components/grainoverlay";
 gsap.registerPlugin(Observer, SplitText, useGSAP, MorphSVGPlugin);
 
 export default function About() {
@@ -36,6 +38,7 @@ export default function About() {
     Observer.create({
       target: logosvg.current,
       type: "pointer",
+      preventDefault: false,
       onHover: () => morphTl.play(),
       onHoverEnd: () => morphTl.reverse(),
     });
@@ -53,6 +56,7 @@ export default function About() {
     Observer.create({
       target: document.querySelector(".name-trigger"), // the visible placeholder
       type: "pointer",
+      preventDefault: false,
       onHover: () => {
         gsap.to(split.chars, {
           yPercent: 0,
@@ -94,9 +98,10 @@ export default function About() {
   }, []);
 
   return (
-    <div className="flex flex-col w-screen h-screen relative overflow-hidden">
-      <div className="h-16 items-center flex flex-row justify-end ">
-        <div className="w-10 h-10 bg-black/25 backdrop-blur-sm rounded-full flex justify-center items-center mr-5 relative">
+    // ✅ Fix
+<div className="flex flex-col relative bg-blue-900 min-h-screen overflow-y-auto">
+      <div className="h-16 items-center flex flex-row  justify-between px-10">
+        <div className="w-10 h-10 bg-black/40 backdrop-blur-sm rounded-full flex justify-center items-center mr-5 relative">
 
           {/* ✅ Both paths share the same viewBox now */}
           <svg
@@ -130,38 +135,30 @@ export default function About() {
           </svg>
         </div>
 
-        <div className="bg-black/25 backdrop-blur-sm rounded-full px-4 py-2 text-white h-10! w-30! justify-center items-center mr-5">
+        <div className="bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 text-white h-10! w-30! justify-center items-center mr-5">
           <h1 className="font-serif flex justify-center items-center text-sm">
             {time}
           </h1>
         </div>
       </div>
 
-      <Image alt="background image" width={50000} height={50000} className="w-screen h-screen absolute z-10 pointer-none pointer-events-none" src={"/destoptoplayer.png"} />
-      <Image alt="background image" width={50000} height={50000} className="w-screen h-screen absolute z-5 pointer-none pointer-events-none" src={"/destopmiddlelayer.png"} />
 
-      {/* ✅ Name animation — wrapper clips overflow, name slides up from below */}
-      <div className="name-trigger relative overflow-hidden h-96 ">
-        <h1
-          ref={nameRef}
-          className="font-romantic font-extrabold text-8xl text-blue-300 "
-        >
-          Ceaser <br /> Eghwrudjakpor
-        </h1>
-      </div>
+    
+<div className="name-trigger relative overflow-hidden">
+  <h1
+    ref={nameRef}
+    className="font-romantic font-extrabold text-8xl text-blue-300 pl-10"
+  >
+    Ceaser <br /> Eghwrudjakpor
+  </h1>
+  <h1 className="font-romantic font-extrabold text-8xl text-blue-300 absolute right-10 top-0">
+    About me
+  </h1>
+</div>
 
-      <Image alt="background image" width={50000} height={50000} className="w-screen h-screen bg-cover bg-center absolute -z-40 pointer-none pointer-events-none" src={"/destopbottomlayer.png"} />
-
-      <div className="justify-end h-full flex items-center">
-        <h1 ref={abouth1} className="text-[10rem] font-bold text-right font-serif leading-38 text-white">About Me</h1>
-      </div>
-
-      <div className="w-1/2 bg-gray-300 flex items-center justify-center">
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sapien eget nunc commodo efficitur. Nulla facilisi. Sed at dui nec nisi bibendum fermentum. Curabitur ac odio a metus commodo efficitur.
-        </p>
-      </div>
+      <AboutPage />
       <BottomNav />
+      <GrainOverlay opacity={0.2} fps={40} tileSize={200} />
     </div>
   );
 }

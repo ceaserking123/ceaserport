@@ -133,14 +133,14 @@ export default function Navbar() {
 
       {/* ---- Left: info ticker ---- */}
       <div className="w-1/3 visible max-sm:hidden flex items-center ml-4">
-        <div className="w-7 h-7 bg-blue-700 flex justify-center items-center mr-5 relative">
+        <div className="w-7 h-7 bg-blue-900 flex justify-center items-center mr-5 relative">
           <span className="w-6 h-6 block overflow-hidden relative justify-center items-center">
             <span className="h-4 w-4 bg-orange-700 block mb-0.5"></span>
             <span className="h-2 w-2 bg-orange-700 block mt-0.5"></span>
           </span>
         </div>
 
-        <div ref={textinfo} className="relative h-5 overflow-hidden w-full"> {/* ✅ typo fixed */}
+        <div ref={textinfo} className="relative h-5 overflow-hidden w-full text-blue-900"> {/* ✅ typo fixed */}
           {myInfo.map((info) => (
             <span key={info.id} className="absolute left-0 top-0 text-sm w-full">
               {info.value}
@@ -175,14 +175,14 @@ export default function Navbar() {
           />
         </svg>
 
-        <p className="text-sm">CEASER</p>
+        <p className="text-sm text-blue-900">CEASER</p>
       </div>
 
       {/* ---- Right: Nav dropdown ---- */}
       <div id="Navigation" className="w-1/3 items-center flex justify-center">
         <DropdownMenu open={open} onOpenChange={setOpen}>
           <DropdownMenuTrigger asChild>
-            <div className="group flex items-center justify-between cursor-pointer bg-black w-62.5 rounded-sm h-10 px-4 text-white">
+            <div className="group flex items-center justify-between cursor-pointer bg-blue-900 w-62.5 rounded-sm h-10 px-4 text-white">
               <div className="block overflow-hidden h-5 ">
                 <h1 ref={menuRef}>Menu <br/> Menu</h1>
                 

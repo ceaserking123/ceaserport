@@ -68,7 +68,7 @@ export default function UnifiedHero() {
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: "top top",
-      end: "+=7000",
+      end: "+=5000",
       pin: true,
       scrub: 1,
       onUpdate: (self) => {
@@ -95,7 +95,7 @@ export default function UnifiedHero() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="relative w-full bg-black">
+    <div ref={containerRef} className="relative w-full bg-black text-blue-900">
 
       {/* ══ Hero ═══════════════════════════════════════════ */}
       <section
@@ -115,14 +115,14 @@ export default function UnifiedHero() {
             height={10000}
             className="object-cover object-top pointer-events-none"
           />
-          <div className=" px-4 py-2 rounded w-screen h-screen flex items-center justify-center perspective-midrange transform-3d relative overflow-hidden">
+          <div className=" px-4 py-2 rounded w-screen h-screen  flex items-center justify-center perspective-midrange transform-3d relative overflow-hidden bg-blue-900">
             <Summary />
           </div>
-          <div className="w-screen h-full bg-blue-600 ">
+          <div className="w-screen h-full bg-blue-900 ">
               
               <Explore />
           </div>
-          <div className="w-screen h-full bg-blue-600 z-10">
+          <div className="w-screen h-full bg-blue-900 z-10">
          
 
           <AsciiImageCard
@@ -194,15 +194,15 @@ export default function UnifiedHero() {
           {/* Left column */}
           <div
             ref={column1Ref}
-            className="flex flex-col gap-4 max-w-xs text-black"
+            className="flex flex-col gap-4 max-w-xs text-blue-900"
           >
             <h1 className="
-              text-black font-bold leading-none
+              text-blue-900 font-bold leading-none
               text-[clamp(2rem,5vw,4rem)]
             ">
               Discovery
             </h1>
-            <p className="text-black text-sm leading-relaxed">
+            <p className="text-blue-900 text-sm leading-relaxed">
               Exploring the horizons of digital motion and immersive design.
             </p>
           </div>
@@ -212,7 +212,7 @@ export default function UnifiedHero() {
             ref={column2Ref}
             className="flex flex-col items-end gap-4 max-w-xs text-right"
           >
-            <p className="text-black text-sm leading-relaxed">
+            <p className="text-blue-900 text-sm leading-relaxed">
               Inspired by award-winning interactions.
             </p>
             

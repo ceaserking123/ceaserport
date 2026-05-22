@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import GrainOverlay from './components/grainoverlay'
+import Footer from "./components/Footer";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -53,12 +54,14 @@ export default function Home() {
 
   return (
     <div className="font-romantic w-full overflow-hidden relative">
+
       <div ref={firstNavRef}>
         <Navbar />
       </div>
       <Hero />
       <Content />
       <BottomNav ref={bottomRef}   />  {/* ref passed directly, no wrapper div */}
+      <Footer />
       <GrainOverlay opacity={0.2} fps={40} tileSize={200} />
     </div>
   );

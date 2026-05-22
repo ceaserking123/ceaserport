@@ -25,8 +25,8 @@ export default function Introduction() {
             
             </div>
             <div className=" relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden text-white">
-            <div >
-                <BackgroundRippleEffect rows={8} cols={27}  />
+            <div  >
+               
             </div>
            
                 <div className="flex flex-row w-full h-20  px-5 justify-end pt-5">

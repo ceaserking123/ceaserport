@@ -83,7 +83,7 @@ export default function Hero() {
                 // animate only this char
                 gsap.to(char, {
                     scale: 2,
-                    color: "#22c55e",
+                    
                     duration: 0.25,
                     ease: "power2.out",
                 });
@@ -131,7 +131,7 @@ export default function Hero() {
     });
 
     return(
-        <section className="hero">
+        <section className="hero text-blue-900">
             <div className="overflow-hidden flex flex-col items-center justify-center h-full text-center gap-6">
                 {/* duplicate texts array for seamless scrolling */}
                 <div ref={nameref} className="flex whitespace-nowrap  marquee overflow-hidden">
@@ -141,7 +141,7 @@ export default function Hero() {
                         </span>
                     ))}
                 </div>
-                <div className=" w-full h-28 flex flex-col items-center justify-center ">
+                <div className=" w-full h-28 flex flex-col items-center justify-center text-blue-900 ">
                     <p className="mb-2" ref= {welcometext}>welcome to my</p>
                     <h2 ref= {porttext} className="text-6xl">Portfolio</h2>
                 </div>

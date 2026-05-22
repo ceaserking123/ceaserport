@@ -6,6 +6,7 @@ import BottomNav from "./components/bottomNav";
 import { useEffect, useRef, useState } from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import GrainOverlay from './components/grainoverlay'
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -58,6 +59,7 @@ export default function Home() {
       <Hero />
       <Content />
       <BottomNav ref={bottomRef}   />  {/* ref passed directly, no wrapper div */}
+      <GrainOverlay opacity={0.2} fps={40} tileSize={200} />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Introduction from "./content1";
 import Casestudy from "./content2";
 import Summary from "./summary";
 import Explore from "./explore";
+import AsciiImageCard from './AsciiImageCard'
 
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -117,13 +118,28 @@ export default function UnifiedHero() {
           <div className=" px-4 py-2 rounded w-screen h-screen flex items-center justify-center perspective-midrange transform-3d relative overflow-hidden">
             <Summary />
           </div>
-          <div className="w-screen h-screen bg-blue-600 ">
+          <div className="w-screen h-full bg-blue-600 ">
               
               <Explore />
           </div>
           <div className="w-screen h-full bg-blue-600 z-10">
-              <h1>last space</h1>
-          </div>
+         
+
+          <AsciiImageCard
+            image1={{
+              src: "/artwork.png",
+              label: "SELF",
+              description: "Designer & developer based in Lagos. Building raw digital experiences from the ground up."
+            }}
+            image2={{
+              src: "/musicimg.png",
+              label: "WORK",
+              description: "Full-stack portfolio. Brutalist UIs, performant systems, obsessive details."
+            }}
+            cols={110}
+            colored={true}
+          />
+                    </div>
           
         </div>
 

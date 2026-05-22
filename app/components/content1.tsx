@@ -8,7 +8,7 @@ import { SplitText } from 'gsap/SplitText';
 
 export default function Introduction() {
     return (
-        <div className="w-full h-screen min-h-9 flex  font-alrevo ml-2 ">
+        <div className="w-full h-screen min-h-9 flex  font-alrevo ml-2 bg-white">
             
             <div className=" w-1/4 h-full flex flex-col ">
             <div className='flex flex-row h-fit items-center mt-2 ml-2'>

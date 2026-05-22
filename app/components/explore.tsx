@@ -140,7 +140,7 @@ export default function Explore() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] font-sans px-6 py-16 md:px-16 flex flex-col justify-center select-none overflow-hidden">
+    <section className="w-screen h-full  min-h-screen bg-[#050505] text-[#FFFFFF] font-sans px-6 py-16 md:px-16 flex flex-col justify-center select-none overflow-hidden">
       
       {/* Navigation Top Header Layer */}
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between mb-12">

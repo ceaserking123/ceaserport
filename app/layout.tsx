@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import { Poppins, } from "next/font/google";
 import "./globals.css";
 import { romantic, Romancio, aroba, clairo, alrevo } from "./components/font";
-import { Suspense } from "react";
-import Loading from "./loading";
-import LoadingScreen from "./loading";
+
 import Providers from "./components/Providers";
 
  

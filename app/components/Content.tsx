@@ -9,6 +9,7 @@ import Lenis from "lenis";
 import Introduction from "./content1";
 import Casestudy from "./content2";
 import Summary from "./summary";
+import Explore from "./explore";
 
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -98,13 +99,13 @@ export default function UnifiedHero() {
       {/* ══ Hero ═══════════════════════════════════════════ */}
       <section
         ref={heroRef}
-        className="relative w-screen h-screen overflow-hidden bg-purple-600"
+        className="relative w-screen h-screen overflow-hidden bg-purple-200"
       >
 
         {/* Sky — tall so parallax has room to drift */}
         <div
           ref={skyContainerRef}
-          className="absolute top-0 left-0 w-screen  bg-emerald-800 will-change-transform "
+          className="absolute top-0 left-0 w-screen  bg-[#171717] will-change-transform "
         >
           <Image
             src="/firstbg.png"
@@ -113,10 +114,16 @@ export default function UnifiedHero() {
             height={10000}
             className="object-cover object-top pointer-events-none"
           />
-          <div className=" bg-white/80 px-4 py-2 rounded w-screen h-screen flex items-center justify-center overflow-hidden">
+          <div className=" px-4 py-2 rounded w-screen h-screen flex items-center justify-center perspective-midrange transform-3d relative overflow-hidden">
             <Summary />
           </div>
-          <h1 className="w-screen h-screen bg-blue-600 pointer-events-none"> hello world</h1>
+          <div className="w-screen h-screen bg-blue-600 ">
+              
+              <Explore />
+          </div>
+          <div className="w-screen h-full bg-blue-600 z-10">
+              <h1>last space</h1>
+          </div>
           
         </div>
 

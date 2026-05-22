@@ -14,7 +14,7 @@ export const navigation : LinkDto[] = [
     { value: "Contact", href: "/contact" },
 ];  
 
-export const myInfo : LinkDto[] = [
+export const myInfo = [
     { value: "professional graphics designer", id: 1 },
     { value: "prolific web developer", id: 2 },
     { value: "lover of art work", id: 3 },

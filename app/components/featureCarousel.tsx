@@ -1,152 +1,193 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 
 const features = [
   {
     id: "deals",
-    label: "Manages deals",
-    description: "Performs all the operations of creating, receiving and updating transactions.",
+    description: "Process of brand setup",
     panel: "/firstbg.png",
   },
   {
     id: "companies",
-    label: "Manages companies",
-    description: "Supports deep integration with companies entity in CRM and associations.",
+    description: "Character design my fav.",
     panel: "/herobgimg2.png",
   },
   {
     id: "contacts",
-    label: "Manages contacts",
-    description: "Knows how to handle contacts, manage them and link them to deals and companies.",
+    description: "Grow your business with the right key.",
     panel: "/destoptoplayer.png",
   },
   {
     id: "custom",
-    label: "Manages custom entities",
-    description: "Processes custom entities with configured parameters.",
+    description: "Build from ground up.",
     panel: "/musicimg.png",
   },
 ];
 
 export default function FeaturesCarousel() {
-  const [active, setActive]   = useState(0); // ✅ index instead of id — easier for next/prev
-  const intervalRef           = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const progressRef           = useRef<HTMLDivElement>(null);  // progress bar
-  const progressTweenRef      = useRef<gsap.core.Tween | null>(null);
+  const [active, setActive] = useState(0);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+  const isAnimatingRef = useRef(false);
 
-  const DURATION = 5; 
+  const ROWS = 8;
+  const COLS = 8;
 
-  // ── Advance to next slide ─────────────────────────────────────────────────
-  const goToNext = (currentIndex: number) => {
-    const next = (currentIndex + 1) % features.length;
-    setActive(next);
-    return next;
-  };
+  // ── 1. Amplified Breathing Effect (Overwrites, Doesn't Kill) ──────────────
+  useEffect(() => {
+    const cells = gridContainerRef.current?.querySelectorAll(".grid-cell");
+    if (!cells || cells.length === 0) return;
 
-  // ── Start progress bar + auto-advance ────────────────────────────────────
-  const startCycle = (index: number) => {
-    // Kill any existing tween and interval
-    progressTweenRef.current?.kill();
-    if (intervalRef.current) clearTimeout(intervalRef.current);
+    const cellArray = Array.from(cells) as HTMLDivElement[];
 
-    // Reset progress bar to 0
-    gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left center" });
+    const ambientPulse = setInterval(() => {
+      // Pick 4 random unique blocks to bounce
+      const shuffled = [...cellArray].sort(() => 0.5 - Math.random());
+      const selectedCells = shuffled.slice(0, 4);
+      
+      // Higher Z peaks for more dramatic breathing
+      gsap.to(selectedCells, {
+        z: () => Math.random() * 55 + 20,
+        duration: 0.7,
+        yoyo: true,
+        repeat: 1,
+        ease: "sine.inOut",
+        // Crucial: 'auto' elegantly overrides matching properties on a cell-by-cell 
+        // basis when a transition hits, creating that organic "skipping a beat" feel.
+        overwrite: "auto" 
+      });
+    }, 200);
 
-    // Animate progress bar from 0 → full width over DURATION seconds
-    progressTweenRef.current = gsap.to(progressRef.current, {
-      scaleX: 1,
-      duration: DURATION,
-      ease: "none",       // linear — feels like a timer
+    return () => clearInterval(ambientPulse);
+  }, [active]);
+
+  // ── 2. The Dynamic Slide Transition ──────────────────────────────────────
+  const handleSelect = (nextIndex: number) => {
+    if (nextIndex === active || isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+
+    const cells = gridContainerRef.current?.querySelectorAll(".grid-cell");
+    if (!cells || cells.length === 0) {
+      setActive(nextIndex);
+      isAnimatingRef.current = false;
+      return;
+    }
+
+    const transitionStyles = ["center", "edges"] as const;
+    const chosenStyle = transitionStyles[Math.floor(Math.random() * transitionStyles.length)];
+
+    // Snappy outward explosion wave
+    gsap.to(cells, {
+      z: () => Math.random() * 160 + 80,
+      rotationX: () => Math.random() * 50 - 25,
+      rotationY: () => Math.random() * 50 - 25,
+      opacity: 0.2,
+      duration: 0.35, 
+      stagger: {
+        grid: [ROWS, COLS],
+        from: chosenStyle,
+        amount: 0.25,
+      },
+      ease: "power3.inOut",
+      overwrite: "auto",
       onComplete: () => {
-        const next = goToNext(index);
-        startCycle(next); // restart cycle for next slide
+        setActive(nextIndex);
+
+        // Snap back down smoothly into position
+        gsap.to(cells, {
+          z: 0,
+          rotationX: 0,
+          rotationY: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: {
+            grid: [ROWS, COLS],
+            from: chosenStyle === "center" ? "edges" : "center",
+            amount: 0.25,
+          },
+          ease: "power4.out",
+          overwrite: "auto",
+          onComplete: () => {
+            isAnimatingRef.current = false;
+          },
+        });
       },
     });
   };
 
-  // ── Manual select — resets the timer ─────────────────────────────────────
-  const handleSelect = (index: number) => {
-    setActive(index);
-    startCycle(index);
-  };
-
-  // ── Start on mount ────────────────────────────────────────────────────────
+  // ── 3. Hybrid Automatic 4-Second Loop + Mouse Interaction ───────────────
   useEffect(() => {
-    startCycle(0);
-    return () => {
-      progressTweenRef.current?.kill();
-      if (intervalRef.current) clearTimeout(intervalRef.current);
-    };
-  }, []);
+    const interval = setInterval(() => {
+      if (!isAnimatingRef.current) {
+        const next = (active + 1) % features.length;
+        handleSelect(next);
+      }
+    }, 4000); // Triggers automatically every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [active]);
 
   return (
-    <section className="flex flex-row max-sm:w-full mx-auto w-full h-full justify-center items-center">
+    <section className="flex flex-col mx-auto w-screen h-screen justify-center items-center relative bg-[#090909] font-mono antialiased overflow-hidden p-6 gap-16">
+      
+      {/* 3D Viewport Box — Permanently Scaled Up 20% (scale-120 / 1.2) */}
+      <div 
+        className="relative flex items-center justify-center scale-125 w-[360px] h-[360px] md:w-[420px] md:h-[420px] will-change-transform"
+        style={{ perspective: "1200px" }}
+      >
+        <div
+          ref={gridContainerRef}
+          className="w-full h-full grid select-none"
+          style={{
+            gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+            gridTemplateRows: `repeat(${ROWS}, 1fr)`,
+            transformStyle: "preserve-3d",
+          }}
+        >
+          {Array.from({ length: ROWS * COLS }).map((_, index) => {
+            const r = Math.floor(index / COLS);
+            const c = index % COLS;
 
-      {/* Left — feature list */}
-      <div className="flex flex-col gap-1  w-1/2  p-6 rounded-2xl overflow-hidden">
-        
+            const posX = (c / (COLS - 1)) * 100;
+            const posY = (r / (ROWS - 1)) * 100;
 
+            return (
+              <div
+                key={index}
+                className="grid-cell relative w-full h-full border-[0.25px] border-black/50 bg-neutral-900"
+                style={{
+                  backgroundImage: `url(${features[active].panel})`,
+                  backgroundSize: `${COLS * 100}% ${ROWS * 100}%`,
+                  backgroundPosition: `${posX}% ${posY}%`,
+                  transformStyle: "preserve-3d",
+                  backfaceVisibility: "hidden",
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Centered Descriptions Control Area */}
+      <div className="flex flex-col items-center justify-center gap-3 max-w-lg text-center z-20">
         {features.map((f, i) => (
           <div
             key={f.id}
-            onMouseEnter={() => handleSelect(i)}  // ✅ hover resets timer
-            className={`
-              px-5 py-4 rounded-lg cursor-pointer border transition-all duration-300
-              ${active === i
-                ? "bg-yellow-600 border-yellow-500"
-                : "border-transparent hover:bg-yellow-100"
-              }
-            `}
+            onMouseEnter={() => handleSelect(i)} // Interrupts auto-cycle instantly on hover
+            className="cursor-pointer py-1 block"
           >
-            
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p
+              className={`text-[11px] tracking-wider transition-all duration-300 font-light ${
+                active === i 
+                  ? "text-orange-500 scale-105 font-semibold brightness-125" 
+                  : "text-neutral-500 hover:text-neutral-300"
+              }`}
+            >
               {f.description}
             </p>
-
-            {/* ── Per-item progress bar — only visible on active item ── */}
-            {active === i && (
-              <div className="mt-3 h-[2px] w-full bg-yellow-200 rounded-full overflow-hidden">
-                <div
-                  ref={progressRef}
-                  className="h-full bg-yellow-900 rounded-full"
-                  style={{ transformOrigin: "left center", transform: "scaleX(0)" }}
-                />
-              </div>
-            )}
           </div>
         ))}
-
-      </div>
-
-      {/* Right — preview panel */}
-      <div className="flex  w-1/2  ">
-        <div className="relative flex items-center justify-center overflow-hidden w-full h-80 lg:h-96 hover:rotate-6 transition-transform duration-500">
-          {features.map((f, i) => (
-            <div
-              key={f.id}
-              className={`
-                absolute inset-0 transition-opacity duration-500 ease-in-out items-center justify-center
-                ${active === i ? "opacity-100" : "opacity-0 pointer-events-none"}
-              `}
-            >
-              <Image
-                src={f.panel}
-                alt={f.label}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center "
-              />
-            </div>
-          ))}
-
-          {/* Slide counter */}
-          <div className="absolute bottom-3 right-4 text-white/60 text-xs tracking-widest z-10">
-            {active + 1} / {features.length}
-          </div>
-        </div>
       </div>
 
     </section>

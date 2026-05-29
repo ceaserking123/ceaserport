@@ -1,10 +1,6 @@
 "use client";    
 
 import Image from 'next/image';
-import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
-import React, {useRef} from 'react';
-import gsap from 'gsap'
-import { SplitText } from 'gsap/SplitText';
 
 export default function Introduction() {
     return (
@@ -12,7 +8,7 @@ export default function Introduction() {
             
             <div className=" w-1/4 h-full flex flex-col ">
             <div className='flex flex-row h-fit items-center mt-2 ml-2'>
-                <Image src={"/pheonixdark.png"} alt="ceaser" width={100} height={100} className="w-10 h-10 mr-4" />
+                <Image src={"/artboard 22.webp"} alt="ceaser" width={100} height={100} className="w-10 h-10 mr-4" />
                 <h1 className="text-4xl font-bold font-aroba">Pheonix</h1>
             </div>
 

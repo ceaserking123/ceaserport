@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
-// ─── sliding image strip (replace srcs with your own) ───────────────────────
 const STRIP_IMAGES = [
   { src: "/SEEDS-02.png", caption: "Creative Direction" },
   { src: "/photo.png", caption: "UI Design" },

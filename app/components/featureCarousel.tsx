@@ -7,12 +7,12 @@ const features = [
   {
     id: "deals",
     description: "Process of brand setup",
-    panel: "/art1.png",
+    panel: "/art1j.jpg",
   },
   {
     id: "companies",
     description: "Character design my fav.",
-    panel: "/art2.png",
+    panel: "/art2.webp",
   },
   {
     id: "contacts",
@@ -22,7 +22,7 @@ const features = [
   {
     id: "custom",
     description: "Build from ground up.",
-    panel: "/artwork4.png",
+    panel: "/artboard 2.webp",
   },
 ];
 

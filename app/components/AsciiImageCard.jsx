@@ -213,29 +213,15 @@ function AsciiPanel({ imgSrc, label, description, cols = 110, colored = true }) 
   );
 }
 
-/**
- * AsciiImageCard
- *
- * Props:
- *   image1: { src: string, label: string, description: string }
- *   image2: { src: string, label: string, description: string }
- *   cols?: number  — ASCII density (default 110)
- *   colored?: boolean — use image colors (default true)
- *
- * Usage:
- *   <AsciiImageCard
- *     image1={{ src: "/me.jpg", label: "001 — SELF", description: "Designer & developer based in Lagos, building raw digital experiences." }}
- *     image2={{ src: "/work.jpg", label: "002 — WORK", description: "Full-stack portfolio. From brutalist UIs to performant APIs." }}
- *   />
- */
+
 export default function AsciiImageCard({
   image1 = {
-    src: "/destopbottomlayer.png",
+    src: "/artboard 37.webp",
     label: "001 — PORTRAIT",
     description: "Drop your image src into the image1 prop. The ASCII renderer samples every pixel and maps brightness to characters.",
   },
   image2 = {
-    src: "/musicimg.png",
+    src: "/artboard 25.webp",
     label: "002 — WORK",
     description: "Drop your second image src into the image2 prop. Hover over either panel to reveal this tooltip.",
   },
